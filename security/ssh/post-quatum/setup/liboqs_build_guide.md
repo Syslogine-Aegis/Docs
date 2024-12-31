@@ -72,6 +72,22 @@ The header files will be installed in `/usr/local/include/oqs`. You can verify t
 ls /usr/local/include/oqs
 ```
 
+## Cleanup
+
+After the installation is complete, you can clean up the source and build directories to free up space:
+
+1. Remove the build directory:
+```bash
+cd ..
+sudo rm -rf build
+```
+
+2. Optionally, remove the cloned repository:
+```bash
+cd ..
+sudo rm -rf liboqs
+```
+
 ## Note
 
 This build method includes all development files (equivalent to the `-dev` package in apt repositories), so no additional packages need to be installed for development purposes.
