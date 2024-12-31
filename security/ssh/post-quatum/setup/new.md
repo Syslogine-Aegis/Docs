@@ -60,7 +60,7 @@ If the dynamic library is missing or not recognized, follow these steps to rebui
 
 2. Reconfigure the build to enable dynamic libraries:
    ```bash
-   cmake -GNinja -DBUILD_SHARED_LIBS=ON ..
+   cmake -GNinja -DOQS_BUILD_ONLY_LIB=OFF -DBUILD_SHARED_LIBS=ON ..
    ```
 
 3. Build and install the library:
