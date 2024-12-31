@@ -8,7 +8,7 @@ First, install the required build tools:
 
 ```bash
 sudo apt update
-sudo apt install build-essential cmake ninja-build automake autoconf git python3 pkg-config
+sudo apt install astyle cmake gcc ninja-build libssl-dev python3-pytest python3-pytest-xdist unzip xsltproc doxygen graphviz python3-yaml valgrind
 ```
 
 ## Building Steps
