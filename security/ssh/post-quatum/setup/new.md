@@ -162,6 +162,11 @@ Host your-server-hostname
     PubkeyAcceptedKeyTypes +ssh-dilithium3
 ```
 
+```
+sudo add-apt-repository ppa:openquantumsafe/pqa
+```
+
+
 ---
 
 ### Important Notes
