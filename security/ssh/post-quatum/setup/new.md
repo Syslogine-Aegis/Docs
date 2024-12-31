@@ -163,7 +163,12 @@ Host your-server-hostname
 ```
 
 ```
-sudo add-apt-repository ppa:openquantumsafe/pqa
+mkdir build && cd build
+cmake -GNinja -DOQS_BUILD_ONLY_LIB=OFF -DBUILD_SHARED_LIBS=ON ..
+ninja
+sudo ninja install
+sudo ldconfig
+oqs-keygen --help
 ```
 
 
