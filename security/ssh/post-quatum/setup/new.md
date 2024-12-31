@@ -175,7 +175,7 @@ oqs-keygen --help
 
 rm -rf build
 mkdir build && cd build
-cmake -GNinja -DOQS_BUILD_ONLY_LIB=OFF -DBUILD_SHARED_LIBS=ON ..
+cmake -GNinja -DOQS_BUILD_ONLY_LIB=OFF -DBUILD_SHARED_LIBS=ON -DOQS_ENABLE_TESTING=ON -DOQS_USE_OPENSSL=ON -DOQS_BUILD_EXAMPLES=ON ..
 ninja
 sudo ninja install
 sudo ldconfig
