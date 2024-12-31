@@ -8,7 +8,7 @@ Welcome to our comprehensive guide on setting up quantum-safe SSH for secure com
 To get started, install the necessary tools and libraries:
 ```bash
 sudo apt update
-sudo apt install build-essential cmake ninja-build automake autoconf git python3 pkg-config python3-pytest
+sudo apt install build-essential cmake ninja-build automake autoconf git python3 pkg-config python3-pytest libtool zlib1g-dev
 
 git clone https://github.com/open-quantum-safe/liboqs.git
 cd liboqs
@@ -114,3 +114,62 @@ Host your-server-hostname
 
 Thank you for securing your communication with quantum-safe technology! If you have any questions or need assistance, feel free to contact our support team.
 
+---
+
+
+
+De aanwezigheid van `/usr/local/lib/liboqs.a` geeft aan dat de statische versie van de `liboqs`-bibliotheek correct is geïnstalleerd, maar de dynamische versie (`liboqs.so`) ontbreekt. Dynamische bibliotheken zijn nodig voor runtime-koppeling en worden opgenomen in de dynamische bibliotheekcache, terwijl statische bibliotheken alleen worden gebruikt tijdens het bouwen van applicaties.
+
+Je moet de dynamische bibliotheek (`liboqs.so`) bouwen en installeren. Hier is hoe je dat doet:
+
+---
+
+### **1. Reconfigureer en bouw liboqs met dynamische bibliotheken**
+1. Ga naar de build-directory van `liboqs`:
+   ```bash
+   cd ~/liboqs/build  # Pas dit aan naar de juiste locatie van je liboqs-build
+   ```
+   Als de directory niet meer bestaat, herhaal het klonen en bouwen van `liboqs`:
+   ```bash
+   git clone https://github.com/open-quantum-safe/liboqs.git
+   cd liboqs
+   mkdir build && cd build
+   ```
+
+2. Reconfigureer de build om dynamische bibliotheken in te schakelen:
+   ```bash
+   cmake -GNinja -DBUILD_SHARED_LIBS=ON ..
+   ```
+
+3. Bouw en installeer:
+   ```bash
+   ninja
+   sudo ninja install
+   ```
+
+4. Update de dynamische bibliotheekcache:
+   ```bash
+   sudo ldconfig
+   ```
+
+---
+
+### **2. Controleer de installatie**
+Controleer opnieuw of de dynamische bibliotheek aanwezig is:
+```bash
+ls /usr/local/lib/liboqs.so*
+```
+
+Controleer of de bibliotheek in de cache is geladen:
+```bash
+ldconfig -p | grep oqs
+```
+
+---
+
+### **3. Opmerking over statische bibliotheken**
+De statische bibliotheek (`liboqs.a`) is bruikbaar als je applicaties bouwt die expliciet de bibliotheek linken, maar dynamische bibliotheken (`liboqs.so`) zijn nodig voor runtime-koppeling en dynamisch laden.
+
+---
+
+Na het uitvoeren van bovenstaande stappen zou alles correct moeten werken. Laat weten als je verdere hulp nodig hebt! 😊
