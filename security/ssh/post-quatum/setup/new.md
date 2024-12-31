@@ -163,12 +163,24 @@ Host your-server-hostname
 ```
 
 ```
+cd build
+cmake -GNinja -DOQS_BUILD_ONLY_LIB=OFF -DBUILD_SHARED_LIBS=ON ..
+ninja
+sudo ninja install
+sudo ldconfig
+sudo ls /usr/local/bin/oqs-keygen
+oqs-keygen --help
+
+
+
+rm -rf build
 mkdir build && cd build
 cmake -GNinja -DOQS_BUILD_ONLY_LIB=OFF -DBUILD_SHARED_LIBS=ON ..
 ninja
 sudo ninja install
 sudo ldconfig
-oqs-keygen --help
+sudo ls /usr/local/bin/oqs-keygen
+
 ```
 
 
